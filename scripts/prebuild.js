@@ -6,8 +6,11 @@ const KATEX_FONT_DIR = resolve(KATEX_DIR, 'fonts');
 const SOURCE_DIR = resolve(__dirname, '../src');
 
 const katexScriptFile = resolve(KATEX_DIR, 'katex.min.js');
+const katexAutoRenderScriptFile = resolve(KATEX_DIR, 'contrib/auto-render.min.js');
 const katexScript = readFileSync(katexScriptFile, 'utf8');
+const katexAutoRenderScript = readFileSync(katexAutoRenderScriptFile, 'utf8');
 writeFileSync(resolve(SOURCE_DIR, 'katex-script.ts'), `export default ${JSON.stringify(katexScript)};`);
+writeFileSync(resolve(SOURCE_DIR, 'auto-render.ts'), `export default ${JSON.stringify(katexAutoRenderScript)};`);
 
 const katexStyleFile = resolve(KATEX_DIR, 'katex.min.css');
 const katexStyleOrigin = readFileSync(katexStyleFile, 'utf8');

@@ -4,6 +4,7 @@ import { WebView } from 'react-native-webview';
 
 import katexStyle from './katex-style';
 import katexScript from './katex-script';
+import autoRenderScript from './auto-render';
 
 export interface TrustContext {
   command: string
@@ -43,11 +44,15 @@ ${inlineStyle}
 </style>
 <script>
 window.onerror = e => document.write(e);
-window.onload = () => katex.render(${JSON.stringify(expression)}, document.body, ${JSON.stringify(options)});
+window.onload = () => renderMathInElement(document.getElementById("expression"), ${JSON.stringify(options)});
 ${katexScript}
+${autoRenderScript}
 </script>
 </head>
 <body>
+<div id="expression">
+${expression}
+</div>
 </body>
 </html>
 `;
